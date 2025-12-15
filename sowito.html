@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOWITO'S DANCE</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/icon2.png" />
+</head>
+
+<body class="load-body">
+
+    <div class="story-container load-container">
+
+        <h1>SOWITO'S DANCE</h1>
+
+        <div class="load-content">
+
+            <div id="image-flip-box" class="image-flip-box">
+                <img id="load-image" src="img/foxdance.webp" alt="Recuerdo de la Partida" class="load-image" />
+            </div>
+
+            <p class="image-caption">No hubo presupuesto para el volumen :( </p>
+
+            <div class="control-buttons">
+                <button id="flip-button" class="nav-button flip-button">
+                    BAILA SOWITO
+                </button>
+
+                <button id="change-music-button" class="nav-button change-music-button">
+                    MUSICA
+                </button>
+            </div>
+
+            <audio id="secret-audio" preload="auto" loop></audio>
+
+        </div>
+
+        <a href="index.html" class="nav-button back-to-menu">
+            VOLVER AL INICIO
+        </a>
+
+    </div>
+
+    <script>
+        const flipButton = document.getElementById('flip-button');
+        const changeMusicButton = document.getElementById('change-music-button');
+        const imageFlipBox = document.getElementById('image-flip-box');
+        const secretAudio = document.getElementById('secret-audio');
+
+        let isFlipped = false;
+        let isPlaying = false;
+        let currentSongIndex = -1; 
+
+        // SONGS SOWEZCAS
+
+        const musicTracks = [
+            'musica/musica1-Only-you.mp3',
+            'musica/musica2-Sunroof.mp3',
+            'musica/musica3-Just-the-two-of-us.mp3',
+            'musica/musica4-This-Side-Of-Paradise.mp3',
+            'musica/musica5-My-only-one.mp3',
+            'musica/musica6-easter-egg.mp3'
+        ];
+
+        //REPRODUCCION DE CANCIONES ALEATORIAMENTE 
+        function playRandomMusic() {
+            // Detener la canción actual si está sonando
+            if (isPlaying) {
+                secretAudio.pause();
+            }
+
+            let newIndex;
+            // Seleccionar un índice aleatorio que no sea el mismo que el actual (si es posible)
+            do {
+                newIndex = Math.floor(Math.random() * musicTracks.length);
+            } while (newIndex === currentSongIndex && musicTracks.length > 1); // Evitar la misma canción si hay más de una
+
+            // Cargar la nueva fuente y reproducir
+            secretAudio.src = musicTracks[newIndex];
+            currentSongIndex = newIndex;
+
+            const playPromise = secretAudio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    console.log(`Reproduciendo: ${musicTracks[newIndex]}`);
+                }).catch(error => {
+                    console.error('Hubo un error :(', error);
+                    // Puede fallar si el navegador aún no permite la reproducción sin interacción previa
+                });
+            }
+        }
+
+        // bOTON PARA INVERTIR FOTO -W-
+        flipButton.addEventListener('click', () => {
+            // Iniciar la música en el primer clic del flip si aún no se ha hecho
+            if (!isPlaying) {
+                playRandomMusic();
+            }
+
+            // Manejar el Volteo (Flip)
+            if (isFlipped) {
+                imageFlipBox.classList.remove('flipped');
+                isFlipped = false;
+                flipButton.textContent = 'BAILA SOWITO';
+            } else {
+                imageFlipBox.classList.add('flipped');
+                isFlipped = true;
+                flipButton.textContent = 'BAILA SOWITO';
+            }
+        });
+
+        //BOTON CAMBIAR MUSICA
+        changeMusicButton.addEventListener('click', () => {
+            playRandomMusic();
+        });
+
+        // Detener audio al salir de la página
+        window.addEventListener('beforeunload', () => {
+            if (isPlaying) {
+                secretAudio.pause();
+                secretAudio.currentTime = 0;
+            }
+        });
+    </script>
+</body>
+
+</html>

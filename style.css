@@ -1,0 +1,368 @@
+
+:root {
+  --color-primary: #ff1493; 
+  --color-secondary: #8a2be2;
+  --color-background: #fdf0f8; 
+  --color-button-base: #ff69b4; 
+  --color-button-hover: #ff2e87; 
+  --color-text: #5a004a; 
+  --color-shadow-light: rgba(255, 255, 255, 0.9);
+  --color-shadow-dark: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url(img/Fondo.jpg);
+  background-size: cover;
+  font-family: 'Arial', sans-serif; 
+  color: var(--color-text);
+  position: relative;
+  overflow: hidden; 
+}
+
+
+.container {
+  width: 90%;
+  max-width: 500px; 
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--color-background); 
+  border-radius: 20px;
+  box-shadow: 0 10px 40px var(--color-secondary), 0 0 15px var(--color-primary) inset;
+  border: 4px solid var(--color-primary); 
+  position: relative;
+  z-index: 10;
+  transition: transform 0.5s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.container {
+  animation: slide-in 1s ease-out;
+}
+
+
+.game-logo {
+  width: 120px;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 5px var(--color-button-hover));
+}
+
+h1 {
+  color: var(--color-primary);
+  font-size: 3.5rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-shadow: 
+    3px 3px 0 var(--color-secondary), 
+    -1px -1px 0 var(--color-shadow-light); 
+  font-family: 'Arial Black', sans-serif; 
+}
+
+.subtitle {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.main-button {
+  background: var(--color-button-base);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 0 0 var(--color-button-hover),
+              0 0 10px rgba(255, 255, 255, 0.7) inset; 
+  border-bottom: 4px solid var(--color-button-hover);
+}
+
+.main-button:hover {
+  transform: translateY(-2px) scale(1.02); 
+  background: var(--color-button-hover);
+  box-shadow: 0 8px 0 0 #c70068, 
+              0 0 15px rgba(255, 255, 255, 0.9) inset;
+}
+
+.main-button:active {
+  transform: translateY(2px); 
+  box-shadow: 0 2px 0 0 #c70068; 
+}
+
+
+
+.heart-deco {
+  position: absolute;
+  width: 90px;
+  opacity: 0.4;
+  transition: transform 1s ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.heart-deco.left {
+  top: 15%;
+  left: -50px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.heart-deco.right {
+  bottom: 15%;
+  right: -50px;
+  animation: float 4s ease-in-out infinite reverse;
+}
+
+.game-footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  border-top: 1px dashed var(--color-secondary);
+  padding-top: 1rem;
+}
+
+.footer-icon {
+    width: 25px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+/* ESTILOS ESPECÍFICOS PARA LA NOVELA VISUAL (inicio.html) */
+
+.story-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 900px; 
+    margin: 2rem auto;
+}
+
+.story-box {
+    width: 100%;
+    border: 5px solid var(--color-secondary); 
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4); 
+}
+
+.image-viewer-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    background-color: #fce4ec; 
+    overflow: hidden;
+}
+
+.story-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* 2. CUADRO DE DIÁLOGO */
+.dialogue-box {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--color-primary); /* Fondo Rosa Fuerte */
+    color: white;
+    text-align: left;
+    min-height: 80px; /* Asegura que haya un espacio mínimo */
+    border-top: 3px solid #ff99c4; /* Borde superior brillante */
+    box-sizing: border-box;
+}
+
+.story-text {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    /* Aplicar un color de texto contrastante */
+    color: #fffaf0; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.character-name {
+    display: block;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--color-secondary); /* Morado vibrante para el nombre */
+    margin-bottom: 0.5rem;
+    /* Fondo para el nombre que simula un cuadro de texto */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    width: fit-content;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 3. CONTROLES DE NAVEGACIÓN */
+.navigation-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px; /* Para centrar los botones debajo del cuadro */
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+}
+
+.nav-button {
+    /* Estilos de botón reutilizados/adaptados del menú */
+    flex-grow: 1;
+    background: var(--color-button-base);
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 4px 0 0 var(--color-button-hover);
+    border-bottom: 3px solid var(--color-button-hover);
+}
+
+.nav-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: var(--color-button-hover);
+    box-shadow: 0 5px 0 0 #c70068;
+}
+
+.nav-button:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: 0 3px 0 0 #999;
+}
+
+/* ========================================= */
+/* ESTILOS ESPECÍFICOS PARA CARGAR RECUERDO (cargar.html) */
+/* ========================================= */
+
+.load-container {
+    padding: 3rem;
+    max-width: 600px; /* Contenedor más pequeño que el de la historia */
+}
+
+.load-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Contenedor de la Imagen para la Transformación */
+.image-flip-box {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    overflow: hidden;
+    border: 5px solid var(--color-primary);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--color-secondary);
+    
+    /* Configuración para la transformación 3D (aunque solo será 2D, es buena práctica) */
+    perspective: 1000px; 
+    transition: transform 0.5s; /* Transición suave si quisiéramos animación 3D */
+}
+
+.load-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scaleX(1);
+    transition: none;
+}
+
+/* CLASE AÑADIDA POR JAVASCRIPT: Estado Volteado */
+.image-flip-box.flipped .load-image {
+    transform: scaleX(-1); /* Voltear horizontalmente */
+}
+
+.image-caption {
+    font-style: italic;
+    color: var(--color-text);
+    margin: 1rem 0 2rem 0;
+}
+
+.flip-button {
+    margin-bottom: 2rem;
+    width: 80%;
+    max-width: 350px;
+}
+
+.back-to-menu {
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--color-secondary);
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+    box-shadow: 0 4px 0 0 #5a004a;
+    display: inline-block; /* Para que funcione el padding */
+}
+
+.back-to-menu:hover {
+    background-color: #6a22b7;
+}
+/* Estilos para el contenedor de los dos botones */
+.control-buttons {
+    display: flex;
+    justify-content: center; /* Centrar los botones */
+    gap: 1rem; /* Espacio entre los botones */
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+/* Para asegurar que los botones ocupen espacio equitativo */
+.control-buttons .nav-button {
+    flex-grow: 1;
+    max-width: 250px;
+    font-size: 1rem; /* Botones un poco más pequeños para caber */
+    padding: 0.7rem 1rem;
+}
+
+.change-music-button {
+    background: #8a2be2; /* Un color morado distinto para diferenciar */
+    box-shadow: 0 4px 0 0 #5a004a; 
+    border-bottom: 3px solid #5a004a;
+}
+
+.change-music-button:hover {
+    background: #9933ff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 0 #5a004a;
+}

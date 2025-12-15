@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuerdos Sowezcos -w-</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/icon2.png" />
+</head>
+
+<body class="story-body">
+
+    <div class="story-container">
+
+        <div class="story-box">
+
+            <div id="image-viewer" class="image-viewer-frame">
+                <img id="story-image" src="img/muehehe.jpg" alt="No carga :(" class="story-image" />
+            </div>
+
+            <div id="dialogue-box" class="dialogue-box">
+                <p id="story-text" class="story-text">
+                    <span class="character-name">PINNO</span>
+                    Había una vez un peleador con mucho talento. Rara vez conocía la derrota y en poco tiempo
+                    terminó alcanzando y superando a su propio maestro.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="navigation-controls">
+            <button id="prev-button" class="nav-button prev" disabled>
+                ⬅️
+            </button>
+
+            <button id="next-button" class="nav-button next">
+                ➡️
+            </button>
+        </div>
+
+    </div>
+
+    <!--CODIGO SOWEZCO QWQ-->
+    <script>
+        // --- 1. Escenas ---
+        const scenes = [
+            {
+                image: 'img/pinno.jfif',
+                character: 'UBG',
+                text: 'Había una vez un furrito muy viciado, que rara vez conocia la derrota.'
+            },
+            {
+                image: 'img/kiss.jfif',
+                character: 'SOWITO',
+                text: 'Un día conoció a alguien divertido y cariñoso y todo comenzó a cambiar.'
+            },
+            {
+                image: 'img/us.jfif',
+                character: '-W-',
+                text: 'Estos dos furritos pasaron por muchas experiencias.'
+            },
+            {
+                image: 'img/atlyss.jfif',
+                character: 'MINECRAFT',
+                text: 'A veces eran mago y guerrero, peleando con incontables bestias.'
+            },
+            {
+                image: 'img/dungeon.jfif',
+                character: 'ATLYSS',
+                text: 'Exploraban lugares con un sinfín de monstruos.'
+            },
+            {
+                image: 'img/sprigatito.jfif',
+                character: '🐱✂',
+                text: '🐱✂'
+            },
+            {
+                image: 'img/cobblemon.jfif',
+                character: 'MINECRAFT',
+                text: 'Otras veces eran entrenadores Pokémon que peleaban o subían de nivel.'
+            },
+            {
+                image: 'img/pokemon.jfif',
+                character: 'BOSQUE PARA POKÉMON',
+                text: 'En un mundo paralelo, estos furrys eran un Sprigatito y un Riolu que vivirían una épica historia, continuando el legado de sus antepasados.'
+            },
+            {
+                image: 'img/hollow.jfif',
+                character: 'HOLLOW KNIGHT',
+                text: 'Y en otro, fueron insectos que pelearían para defender un reino en ruinas.'
+            },
+            {
+                image: 'img/family.jfif',
+                character: '-w-',
+                text: 'Aún quedan muchas aventuras para estos dos, y tal vez un día puedan parar a recordar cada una de ellas.'
+            }
+        ];
+
+        // --- 2. Estado ---
+        let currentScene = 0;
+
+        // --- 3. Referencias ---
+        const storyImage = document.getElementById('story-image');
+        const storyText = document.getElementById('story-text');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        // --- 4. Renderizar escena ---
+        function renderScene() {
+            const scene = scenes[currentScene];
+
+            storyImage.src = scene.image;
+            storyText.innerHTML = `
+            <span class="character-name">${scene.character}</span>
+            ${scene.text}
+        `;
+
+            prevButton.disabled = currentScene === 0;
+
+            if (currentScene === scenes.length - 1) {
+                nextButton.textContent = "FIN";
+
+                // Quitar listener anterior y poner uno nuevo
+                nextButton.onclick = () => {
+                    window.location.href = "index.html";
+                };
+            } else {
+                nextButton.textContent = "➡️";
+
+                // Volvemos a asignar su función normal de avanzar
+                nextButton.onclick = nextScene;
+            }
+        }
+
+        // --- 5. Navegación ---
+        function nextScene() {
+            if (currentScene < scenes.length - 1) {
+                currentScene++;
+                renderScene();
+            }
+        }
+
+        function prevScene() {
+            if (currentScene > 0) {
+                currentScene--;
+                renderScene();
+            }
+        }
+
+        // --- 6. Listeners únicos (no duplicados) ---
+        prevButton.onclick = prevScene;
+        nextButton.onclick = nextScene;
+
+        // --- 7. Iniciar ---
+        renderScene();
+    </script>
+
+</body>
+
+</html>
