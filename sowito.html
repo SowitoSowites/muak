@@ -56,28 +56,23 @@
         // SONGS SOWEZCAS
 
         const musicTracks = [
-            'musica/musica1-Only-you.mp3',
-            'musica/musica2-Sunroof.mp3',
-            'musica/musica3-Just-the-two-of-us.mp3',
-            'musica/musica4-This-Side-Of-Paradise.mp3',
-            'musica/musica5-My-only-one.mp3',
-            'musica/musica6-easter-egg.mp3'
+            'musica/ahora.mp3',
         ];
 
         //REPRODUCCION DE CANCIONES ALEATORIAMENTE 
         function playRandomMusic() {
-            // Detener la canción actual si está sonando
+           
             if (isPlaying) {
                 secretAudio.pause();
             }
 
             let newIndex;
-            // Seleccionar un índice aleatorio que no sea el mismo que el actual (si es posible)
+           
             do {
                 newIndex = Math.floor(Math.random() * musicTracks.length);
-            } while (newIndex === currentSongIndex && musicTracks.length > 1); // Evitar la misma canción si hay más de una
+            } while (newIndex === currentSongIndex && musicTracks.length > 1); 
 
-            // Cargar la nueva fuente y reproducir
+          
             secretAudio.src = musicTracks[newIndex];
             currentSongIndex = newIndex;
 
@@ -89,14 +84,14 @@
                     console.log(`Reproduciendo: ${musicTracks[newIndex]}`);
                 }).catch(error => {
                     console.error('Hubo un error :(', error);
-                    // Puede fallar si el navegador aún no permite la reproducción sin interacción previa
+                  
                 });
             }
         }
 
         // bOTON PARA INVERTIR FOTO -W-
         flipButton.addEventListener('click', () => {
-            // Iniciar la música en el primer clic del flip si aún no se ha hecho
+          
             if (!isPlaying) {
                 playRandomMusic();
             }
@@ -118,7 +113,7 @@
             playRandomMusic();
         });
 
-        // Detener audio al salir de la página
+       
         window.addEventListener('beforeunload', () => {
             if (isPlaying) {
                 secretAudio.pause();
